@@ -125,9 +125,9 @@ export class AppComponent {
         children: [
           {
             type: 'link',
-            label: 'Analytics',
-            route: '/',
-            icon: 'mat:insights',
+            label: 'Hisse Senedi Analizi',
+            route: 'pages/stock-transactions',
+            icon: '',
             routerLinkActiveOptions: { exact: true }
           }
         ]
