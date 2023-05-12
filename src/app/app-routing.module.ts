@@ -6,8 +6,18 @@ const routes: Routes = [
   {
     path: '',
     component: CustomLayoutComponent,
-    children: []
-  }
+    children: [
+      {
+        path: 'pages',
+        children: [
+          {
+            path: 'stock-transactions',
+            loadChildren: () => import('./pages/stock-transactions/stock-transactions.module').then(m => m.StockTransactionsModule )
+          }]
+      }
+    ]
+  },
+
 ];
 
 @NgModule({
