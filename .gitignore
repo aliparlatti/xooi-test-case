@@ -40,4 +40,8 @@ testem.log
 
 # System Files
 .DS_Store
+src/@vex/.DS_Store
+src/assets/.DS_Store
+src/app/.DS_Store
+src/.DS_Store
 Thumbs.db

@@ -1,0 +1,20 @@
+<div *ngFor="let stock of data | async">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th class="text-center" *ngFor="let data of stock.data">
+          {{ data.date }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ stock.symbol }}</td>
+        <td class="text-center" *ngFor="let data of stock.data">
+          {{ data.close }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
