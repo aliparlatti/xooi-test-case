@@ -23,9 +23,12 @@ export class StockTransactionsComponent implements OnInit {
 
   ngOnInit() {}
   sendFormData() {
-    this.chartDataResponse$.next([]);
     const selectedCompanies: string[] = this.companies.value;
+    let endDate = new Date(
+      this.range.value.end.setDate(this.range.value.end.getDate() + 1)
+    );
     if (!this.companies.invalid && !this.range.invalid) {
+      this.chartDataResponse$.next([]);
       const requests = selectedCompanies.map((company) => {
         return this.chartService.getChartData(company);
       });
@@ -36,11 +39,7 @@ export class StockTransactionsComponent implements OnInit {
             const startDateStr = this.range.value.start
               .toISOString()
               .split("T")[0];
-            const endDateStr = new Date(
-              this.range.value.end.setDate(this.range.value.end.getDate() + 1)
-            )
-              .toISOString()
-              .split("T")[0];
+            const endDateStr = endDate.toISOString().split("T")[0];
             const data = Object.entries(response["Time Series (Daily)"])
               .filter(
                 ([date, values]) => date >= startDateStr && date <= endDateStr
@@ -55,7 +54,6 @@ export class StockTransactionsComponent implements OnInit {
         )
         .subscribe(
           (chartDataResponse) => {
-            // console.log(chartDataResponse);
             this.chartDataResponse$.next([
               ...this.chartDataResponse$.value,
               chartDataResponse,
@@ -65,6 +63,9 @@ export class StockTransactionsComponent implements OnInit {
             console.log(error);
           },
           () => {
+            endDate = new Date(
+              this.range.value.end.setDate(this.range.value.end.getDate() - 1)
+            );
             console.log("All requests completed.");
           }
         );

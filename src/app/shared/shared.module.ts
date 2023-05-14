@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { TableComponent } from "./table/table.component";
-import { MatTableModule } from "@angular/material/table";
 import { CommonModule } from "@angular/common";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 
 @NgModule({
   exports: [TableComponent],
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, NgxDatatableModule],
   declarations: [TableComponent],
 })
 export class SharedModule {}
