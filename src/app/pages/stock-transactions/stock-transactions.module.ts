@@ -10,6 +10,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [StockTransactionsComponent],
@@ -24,6 +25,7 @@ import { MAT_DATE_LOCALE } from "@angular/material/core";
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    SharedModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: "tr-TR" }],
 })
