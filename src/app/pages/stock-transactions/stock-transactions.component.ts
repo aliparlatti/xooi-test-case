@@ -19,6 +19,7 @@ export class StockTransactionsComponent implements OnInit {
     end: new FormControl<Date | null>(null, Validators.required),
   });
   chartDataResponse$ = new BehaviorSubject<ChartDataResponseModel[]>([]);
+  formSubmitted: boolean = false;
   constructor(private chartService: ChartDataService) {}
 
   ngOnInit() {}
@@ -28,6 +29,7 @@ export class StockTransactionsComponent implements OnInit {
       this.range.value.end.setDate(this.range.value.end.getDate() + 1)
     );
     if (!this.companies.invalid && !this.range.invalid) {
+      this.formSubmitted = true;
       this.chartDataResponse$.next([]);
       const requests = selectedCompanies.map((company) => {
         return this.chartService.getChartData(company);
@@ -60,9 +62,14 @@ export class StockTransactionsComponent implements OnInit {
             ]);
           },
           (error) => {
+            this.formSubmitted = false;
+            endDate = new Date(
+              this.range.value.end.setDate(this.range.value.end.getDate() - 1)
+            );
             console.log(error);
           },
           () => {
+            this.formSubmitted = false;
             endDate = new Date(
               this.range.value.end.setDate(this.range.value.end.getDate() - 1)
             );
@@ -70,7 +77,7 @@ export class StockTransactionsComponent implements OnInit {
           }
         );
     } else {
-      console.log("HATA EKSİK VERİ");
+      console.log("Please select a Date or Stock");
     }
   }
 }
