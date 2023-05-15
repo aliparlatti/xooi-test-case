@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
       );
       this.dates = [...dates];
       if (this.dates.length === 0 && this.notice) {
-        this.dates.push("Verilerini Görüntülemek İçin Hisse ve Tarih Seçiniz!");
+        this.dates.push("Verileri Görüntülemek İçin Hisse ve Tarih Seçiniz!");
         this.notice = false;
       }
     });
