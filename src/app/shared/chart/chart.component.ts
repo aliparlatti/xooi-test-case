@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { ChartDataResponseModel } from "../../model";
-import { ConvertChartDataService } from "../../services/convert-fusion-chart";
 
 @Component({
   selector: "vex-chart",
@@ -18,6 +17,9 @@ export class ChartComponent implements OnInit {
       showhovereffect: "1",
       numbersuffix: "",
       drawcrossline: "1",
+      legendIconSides: 4,
+      legendIconBgColor: "#ffffff",
+      legendIconBorderThickness: 4,
       plottooltext:
         "<label class='font-bold text-red-500'>$dataValue</label> - $seriesName",
       theme: "fusion",
@@ -30,7 +32,7 @@ export class ChartComponent implements OnInit {
   type = "scrollline2d";
   dataFormat = "json";
   dataSource = this.data;
-  constructor(private convertData: ConvertChartDataService) {}
+  constructor() {}
   ngOnInit(): void {
     this.chartData.subscribe((res) => {
       const categories = res[0]?.data.map((item) => ({
